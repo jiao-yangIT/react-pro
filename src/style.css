@@ -15,3 +15,22 @@ div {
     width: 100px;
     height: 100px;
 }
+.app-page {
+    padding: 0 !important;
+    margin: -30px -18px!important;
+}
+.header, .footer {
+    height: 80px;
+    line-height: 80px;
+}
+
+.header {
+    background-color: seagreen;
+}
+.main {
+    height: calc(99vh - 200px);
+    background-color: skyblue;
+}
+.footer {
+    background-color: orange;
+}
