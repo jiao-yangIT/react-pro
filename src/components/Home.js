@@ -14,6 +14,10 @@ class Home extends Component {
         *   传入对象时，会覆盖之前的对象数据，执行的最后一个，传入函数时，是都会执行；推荐使用函数
      */
 
+    /*
+    * this的使用
+    */
+
     state = {
         name: 'YJJ',
         age: 28,
@@ -42,6 +46,11 @@ class Home extends Component {
         }))
         console.log(this.state.money);
     }
+
+    handleClickThis = function () {
+        console.log(this)
+        console.log('这是普通函数的方式，使用this')
+    }
     render() {
         return(
             <>
@@ -55,6 +64,8 @@ class Home extends Component {
                         <div>
                             <p>余额：{ this.state.money } W</p>
                             <button onClick={this.handleClickMoney}>点击改变金额</button>
+                            <button onClick={()=> {this.handleClickThis()}}>箭头函数this</button>
+                            <button onClick={this.handleClickThis.bind(this)}>bind-this</button>
                         </div>
                     </div>
                 </Layout>
