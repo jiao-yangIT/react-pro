@@ -18,6 +18,7 @@ class Home extends Component {
         selectValue: 'LH',
         checkedValue: [],
         radioValue: 'man',
+        dataSource: [],
     }
 
     handleClick = async ()=> {
@@ -89,6 +90,20 @@ class Home extends Component {
         this.state.checkedValue = this.checkBoxDatas.filter(e => e.isChecked).map(m=> m.id)
         let submitData = this.state
         console.log(submitData)
+    }
+
+    removeData = (index)=> {
+        // 核心：找到要删除行的索引数据index,将它从原数据中拿出来，最后再将处理过的数据重新setState给state，页面重新渲染
+        // 对数据进行深拷贝
+        const dataSource = JSON.parse(JSON.stringify(this.state.dataSource))
+        // 从拷贝的数据中将要删除的索引找出
+        const index1 = dataSource.findIndex(find => find.index === index)
+        // 利用index将目标项从数组中删除
+        dataSource.splice(index, 1)
+        // 数据更新
+        this.setState({ dataSource }, ()=> {
+            console.log(this.state.dataSource)
+        })
     }
     render() {
         return(
