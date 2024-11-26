@@ -6,7 +6,10 @@ class Home extends Component {
     state = {
         name: 'YJJ',
         age: 28,
-        money: 0
+        money: 0,
+        selectValue: 'LH',
+        checkedValue: [],
+        radioValue: 'man',
     }
 
     handleClick = async ()=> {
@@ -49,6 +52,36 @@ class Home extends Component {
             [prop]: ev.target.value
         })
     }
+
+    // 复选框数据
+    checkBoxDatas = [
+        {
+            id: 1,
+            title: '复选框1',
+            isChecked: true,
+        },
+        {
+            id: 2,
+            title: '复选框2',
+            isChecked: true,
+        },
+        {
+            id: 3,
+            title: '复选框3',
+            isChecked: false,
+        }
+    ]
+
+    handleChangeCheckBox(index, ev) {
+        this.checkBoxDatas[index] = ev.target.checked
+    }
+
+    handleSubmit(ev) {
+        ev.preventDefault();
+        this.state.checkedValue = this.checkBoxDatas.filter(e => e.isChecked).map(m=> m.id)
+        let submitData = this.state
+        console.log(submitData)
+    }
     render() {
         return(
             <>
@@ -89,9 +122,31 @@ class Home extends Component {
                             {/**   ev.target.name === [prop]: this.setState({})*/}
                             {/** value={***}的控制台报错：如果没有change事件，则有defaultValue/readonly属性来避免报错*/}
                             <h2>表单元素的使用</h2>
-                            <input name={'name'} value={this.state.name} onChange={this.handleChangeFormVal.bind(this)} />
-                            <input value={this.state.age} onChange={(e)=> {this.setState({age: e.target.value})}} />
-                            <input type="text" defaultValue={this.state.money} readOnly/>
+                            <form onSubmit={(ev)=> {this.handleSubmit(ev)}}>
+                                <input name={'name'} value={this.state.name} onChange={this.handleChangeFormVal.bind(this)} />
+                                <input value={this.state.age} onChange={(e)=> {this.setState({age: e.target.value})}} />
+                                <input type="text" defaultValue={this.state.money} readOnly/>
+                                <br />
+                                <select value={this.state.selectValue} onChange={(e)=> {
+                                    this.setState({selectValue: e.target.value})
+                                }}>
+                                    <option value="YJJ">YANGJJ</option>
+                                    <option value="LH">LIHU</option>
+                                </select>
+                                <input name='radioValue' type="radio" value={'man'} defaultChecked={this.state.radioValue === 'man'} onChange={(ev)=> { this.setState({radioValue: ev.target.value})}}/> 男
+                                <input name='radioValue' value={'woman'} type="radio" defaultChecked={this.state.radioValue === 'woman'} onChange={(ev)=> { this.setState({radioValue: ev.target.value})}}/> 女
+                                {
+                                    this.checkBoxDatas.map((d, index)=> {
+                                        return(
+                                            <label key={d.id}>
+                                                <input type="checkbox" defaultChecked={d.isChecked} onChange={this.handleChangeCheckBox.bind(this, index)}/>{ d.title}
+                                            </label>
+                                        )
+                                    })
+                                }
+                                <br />
+                                <input type='submit' />
+                            </form>
                         </div>
                     </div>
                 </Layout>
