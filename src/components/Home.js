@@ -7,6 +7,7 @@ class Home extends Component {
 
     // this.***.bind(this)更换-代码简洁
     constructor() {
+        console.log('constructor执行')
         super()
         // this.*** = this.***.bind(this)
     }
@@ -106,6 +107,7 @@ class Home extends Component {
         })
     }
     render() {
+        console.log('render执行')
         return(
             <>
                 <Layout>
@@ -176,10 +178,29 @@ class Home extends Component {
                             <h2>非受控表单</h2>
                             <Form />
                         </div>
+                        <div>
+                            {/*挂载组件-组件被创建然后插入到DOM当中*/}
+                            {/*生命周期方法
+                                constructor         设置组件的初始配置
+                                render              解析JSX,在界面显示
+                                componentDidMount   组件挂在完成--发送网络请求；添加定时器；添加事件监听；获取DOM元素
+                             */}
+                            <h2>react生命周期</h2>
+                            <input value={this.state.money} readOnly/>
+                        </div>
                     </div>
                 </Layout>
             </>
         )
+    }
+
+    componentDidMount() {
+        console.log('componentDidMount执行了')
+/*        setInterval(()=> {
+            this.setState({
+                money: this.state.money + 1
+            })
+        }, 1000)*/
     }
 }
 
