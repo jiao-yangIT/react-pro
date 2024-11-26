@@ -4,6 +4,13 @@ import Y1 from './Y1'
 import Form from "./Form";
 
 class Home extends Component {
+
+    // this.***.bind(this)更换-代码简洁
+    constructor() {
+        super()
+        // this.*** = this.***.bind(this)
+    }
+
     state = {
         name: 'YJJ',
         age: 28,
