@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Layout from "./Layout";
 import Y1 from './Y1'
+import Form from "./Form";
 
 class Home extends Component {
     state = {
@@ -147,6 +148,11 @@ class Home extends Component {
                                 <br />
                                 <input type='submit' />
                             </form>
+                        </div>
+                        <div>
+                            {/** 非受控组件指的是 就某一个元素里的数据不受react的管理， 可以直接从DOM元素本身进行获取(获取DOM元素，获取具体的值)*/}
+                            <h2>非受控表单</h2>
+                            <Form />
                         </div>
                     </div>
                 </Layout>
