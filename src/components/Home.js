@@ -23,12 +23,13 @@ class Home extends Component {
         radioValue: 'man',
         dataSource: [],
         isShow: true,
+        users: [],
     }
 
     handleClick = async ()=> {
         this.setState({
             name: this.state.name === 'LH' ? 'YJJ' : 'LH',
-            age: this.state.age === 26 ? 28 : 26
+            age: this.state.age === 26 ? 28 : 26,
         })
     }
     handleClickMoney = async ()=> {
@@ -94,6 +95,11 @@ class Home extends Component {
         this.state.checkedValue = this.checkBoxDatas.filter(e => e.isChecked).map(m=> m.id)
         let submitData = this.state
         console.log(submitData)
+    }
+
+    getUsers = async ()=> {
+        const users = await axios.get('/api/users.json').then((res)=> res.data);
+        this.setState({ users })
     }
 
     removeData = (index)=> {
@@ -224,6 +230,17 @@ class Home extends Component {
                             <h2>发起请求/请求转发</h2>
                             当前年龄为{this.state.age}
                         </div>
+                        <div>
+                            <h2>mock 数据-适用于get请求</h2>
+                            <button onClick={this.getUsers}>获取用户数据</button>
+                            <ul>
+                                {
+                                    this.state.users.map((user)=>(
+                                        <li key={user.id}>{user.name}</li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
                     </div>
                 </Layout>
             </>
@@ -233,8 +250,8 @@ class Home extends Component {
     async componentDidMount() {
         // url: 直接写： http://localhost:3100/api/component
         // url: 代理写： /api/component
-        const data = await axios.get('/component').then((res)= res.data)
-        this.setState({ age: data.age})
+        // const data = await axios.get('/component').then((res)= res.data)
+        // this.setState({ age: data.age})
         console.log('componentDidMount执行了')
 /*        setInterval(()=> {
             this.setState({
