@@ -21,6 +21,7 @@ class Home extends Component {
         checkedValue: [],
         radioValue: 'man',
         dataSource: [],
+        isShow: true,
     }
 
     handleClick = async ()=> {
@@ -200,6 +201,16 @@ class Home extends Component {
                             <h2>react生命周期-更新阶段</h2>
                             {this.state.age}<button onClick={()=> { this.setState({age: this.state.age + 1})}}>父点击按钮</button>
                             <About />
+                        </div>
+                        <div>
+                            {/*组件卸载阶段-将组件从DOM中删除*/}
+                            {/*生命周期方法
+                                componentWillUnMount
+                             */}
+                            <h2>react生命周期-卸载阶段</h2>
+                            {this.state.age}<button onClick={()=> { this.setState({age: this.state.age + 1})}}>父点击按钮</button>
+                            <button onClick={()=> { this.setState({isShow: !this.state.isShow})}}>子组件显隐切换</button>
+                            {this.state.isShow && <About />}
                         </div>
                     </div>
                 </Layout>

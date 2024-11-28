@@ -36,6 +36,16 @@ class About extends PureComponent{
     //     }
     //     return true
     // }
+
+    foo = ()=> {
+        console.log('about组件的click事件')
+    }
+    componentDidMount() {
+        window.addEventListener('click', this.foo)
+    }
+    componentWillUnmount() {
+        window.removeEventListener('click', this.foo)
+    }
 }
 
 export default About
