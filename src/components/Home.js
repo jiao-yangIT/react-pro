@@ -214,7 +214,14 @@ class Home extends Component {
                             {this.state.isShow && <About />}
                         </div>
                         <div>
-                            <h2>发起请求</h2>
+                            {/*请求转发:避免跨域问题*/}
+                            {/*react如何实现请求转发：
+                                package.json 配置 proxy代理地址：http://localhost:3100
+                                使用第三方服务：http-proxy-middleware --setupProxy.js文件
+                            */}
+                            {/*服务器与服务端不存在跨域问题*/}
+                            {/*客户端应用发请求到对应同源的服务端，服务端将请求转发API服务器端，API服务器端将数据处理后返回给...客户端应用*/}
+                            <h2>发起请求/请求转发</h2>
                             当前年龄为{this.state.age}
                         </div>
                     </div>
@@ -224,6 +231,8 @@ class Home extends Component {
     }
 
     async componentDidMount() {
+        // url: 直接写： http://localhost:3100/api/component
+        // url: 代理写： /api/component
         const data = await axios.get('/component').then((res)= res.data)
         this.setState({ age: data.age})
         console.log('componentDidMount执行了')
