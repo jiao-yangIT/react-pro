@@ -41,8 +41,10 @@ class About extends PureComponent{
         console.log('about组件的click事件')
     }
     componentDidMount() {
+        //当组件挂载完成之后就可以执行dom操作，此时添加事件监听
         window.addEventListener('click', this.foo)
     }
+    // 当前方法在组件卸载之前执行
     componentWillUnmount() {
         window.removeEventListener('click', this.foo)
     }
