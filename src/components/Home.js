@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import Y1 from './Y1'
 import Form from "./Form";
 import About from "../About";
+import axios from 'axios'
 
 class Home extends Component {
 
@@ -212,13 +213,19 @@ class Home extends Component {
                             <button onClick={()=> { this.setState({isShow: !this.state.isShow})}}>子组件显隐切换</button>
                             {this.state.isShow && <About />}
                         </div>
+                        <div>
+                            <h2>发起请求</h2>
+                            当前年龄为{this.state.age}
+                        </div>
                     </div>
                 </Layout>
             </>
         )
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        const data = await axios.get('/component').then((res)= res.data)
+        this.setState({ age: data.age})
         console.log('componentDidMount执行了')
 /*        setInterval(()=> {
             this.setState({
