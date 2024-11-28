@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Layout from "./Layout";
 import Y1 from './Y1'
 import Form from "./Form";
+import About from "../About";
 
 class Home extends Component {
 
@@ -111,7 +112,7 @@ class Home extends Component {
         return(
             <>
                 <Layout>
-                    <div  style={{display: 'flex'}}>
+                    <div  style={{display: 'flex',flexWrap: "wrap"}}>
                         <div>
                             {/*//类组件中默认存在一个state属性，是一个对象，可以用于保存当前组件的数据*/}
                             {/*//之后还可以通过setState方法来修改数据的值，最后修改后的状态会自动显示在DOM界面上*/}
@@ -185,8 +186,20 @@ class Home extends Component {
                                 render              解析JSX,在界面显示
                                 componentDidMount   组件挂在完成--发送网络请求；添加定时器；添加事件监听；获取DOM元素
                              */}
-                            <h2>react生命周期</h2>
+                            <h2>react生命周期-挂载阶段</h2>
                             <input value={this.state.money} readOnly/>
+                        </div>
+                        <div>
+                            {/*组件更新阶段-当数据更新之后，数据需要被重新渲染；外部传入的props以及自身管理的状态*/}
+                            {/*生命周期方法
+                                shouldComponentUpdate(nextProps, nextState)         组件是否更新
+                                    默认返回true；如果此方法返回的是false，则后续方法就不会再执行
+                                render              解析JSX,在界面显示；渲染DOM组件
+                                componentDidUpdate   组件更新完成后执行
+                             */}
+                            <h2>react生命周期-更新阶段</h2>
+                            {this.state.age}<button onClick={()=> { this.setState({age: this.state.age + 1})}}>父点击按钮</button>
+                            <About />
                         </div>
                     </div>
                 </Layout>
