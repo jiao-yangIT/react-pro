@@ -4,6 +4,7 @@ import Y1 from './Y1'
 import Form from "./Form";
 import About from "../About";
 import axios from 'axios'
+import Counter from './Counter';
 
 class Home extends Component {
 
@@ -240,6 +241,13 @@ class Home extends Component {
                                     ))
                                 }
                             </ul>
+                        </div>
+                        <div>
+                            {/*Redux-可进行组件之间传值*/}
+                            {/*Redux是一个数据管理框架，提供了一个叫store的统一数据存储的仓库*/}
+                            {/*store是一个数据管理的中间人，让组件之前无需在进行数据传递*/}
+                            <h2>redux 使用</h2>
+                            <Counter />
                         </div>
                     </div>
                 </Layout>
