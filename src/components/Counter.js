@@ -4,10 +4,10 @@ function Counter(props) {
             return(
                 <div>
                     {/*修改state的值时不直接修改，通过dispatch指令传递给reducer，再里面进行修改*/}
-                    <button onClick={()=> { props.dispatch({ type: 'add'})}}>+1</button>
-                    <button onClick={()=> { props.dispatch({ type: 'add_w', payload: 5})}}>+5</button>
+                    <button onClick={props.add}>+1</button>
+                    <button onClick={()=> { props.add_w(5)}}>+5</button>
                     <span>{props.count}</span>
-                    <button onClick={()=> { props.dispatch({ type: 'adc'})}}>-1</button>
+                    <button onClick={props.adc}>-1</button>
                 </div>
             )
 }
@@ -15,4 +15,16 @@ function Counter(props) {
 const mapStateToProps = state=> ({
     count: state.count
 })
-export default connect(mapStateToProps)(Counter)
+
+const mapDispatchToProps = dispatch=> ({
+    add() {
+        dispatch({ type: 'add'})
+    },
+    add_w(payload) {
+        dispatch({ type: 'add_w', payload})
+    },
+    adc() {
+        dispatch({ type: 'adc'})
+    },
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Counter)
