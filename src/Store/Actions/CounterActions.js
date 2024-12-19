@@ -1,3 +1,4 @@
-export const add =()=> ({   type: 'add' })
-export const add_w =(payload)=> ({   type: 'add_w', payload })
-export const adc =()=> ({   type: 'adc' })
+import { ADD, ADC, ADD_W } from './CounterActionTypes'
+export const add =()=> ({   type: ADD })
+export const add_w =(payload)=> ({   type: ADD_W, payload })
+export const adc =()=> ({   type: ADC })
