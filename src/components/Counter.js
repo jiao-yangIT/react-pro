@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as counterActions from '../Store/Actions/CounterActions'
 function Counter(props) {
             return(
                 <div>
@@ -17,14 +19,6 @@ const mapStateToProps = state=> ({
 })
 
 const mapDispatchToProps = dispatch=> ({
-    add() {
-        dispatch({ type: 'add'})
-    },
-    add_w(payload) {
-        dispatch({ type: 'add_w', payload})
-    },
-    adc() {
-        dispatch({ type: 'adc'})
-    },
+    ...bindActionCreators(counterActions, dispatch)
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Counter)
